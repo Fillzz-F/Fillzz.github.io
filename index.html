@@ -144,7 +144,7 @@ function displayGreeting() {
     } else if (hours < 18) {
         greeting = 'Selamat Sore!';
     } else {
-        greeting = 'Selamat Malam!';
+        greeting = 'Selamat Malam!,${nama}';
     }
 
     document.getElementById('greeting').textContent = greeting;
