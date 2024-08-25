@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fill otw tobat</title>
+    <title>Website dengan Rasio 16:9</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +11,23 @@
             padding: 0;
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            width: 80vw; /* 80% dari lebar viewport */
+            height: 45vw; /* 45% dari lebar viewport, menjaga rasio 16:9 */
+            max-width: 1280px; /* Maksimal lebar 1280px */
+            max-height: 720px; /* Maksimal tinggi 720px */
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: #fff;
         }
         header {
             background-color: #333;
@@ -21,20 +38,18 @@
         }
         main {
             padding: 20px;
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-y: auto;
         }
         footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
         .box {
             background-color: #fff;
             border: 2px solid #ddd;
@@ -42,7 +57,7 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             margin-bottom: 20px;
-            width: 80%;
+            width: 100%;
             max-width: 500px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -82,74 +97,75 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Selamat Datang di Web Fillzz</h1>
-    </header>
-    <main>
-    	  <div class="box">
-            <h2>Masukkan Nama Kamu</h2>
-            <input type="text" id="nama" placeholder="Nama Kamu">
-            <button onclick="DisplayData()">Simpan</button>
-            <p id="Output"></p>
+    <div class="container">
+        <header>
+            <h1>Selamat Datang di Web Fillzz</h1>
+        </header>
+        <main>
+            <div class="box">
+                <h2>Masukkan Nama Kamu</h2>
+                <input type="text" id="nama" placeholder="Nama Kamu">
+                <button onclick="DisplayData()">Simpan</button>
+                <p id="Output"></p>
             </div>
     
-        <div class="box">
-            <h2>Perhitungan Simpel</h2>
-            <p>Masukkan 2 angka:</p>
-            <input type="number" id="num1" placeholder="Angka 1">
-            <input type="number" id="num2" placeholder="Angka 2">
-            <button onclick="calculateSum()">Hitung Jumlah</button>
-            <p id="result"></p>
-        </div>
-        <div class="box">
-            <h2>Sapa aku</h2>
-            <button onclick="displayGreeting()">Tampilkan Ucapan</button>
-            <p id="greeting"></p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Hak Cipta Filbert</p>
-    </footer>
+            <div class="box">
+                <h2>Perhitungan Simpel</h2>
+                <p>Masukkan 2 angka:</p>
+                <input type="number" id="num1" placeholder="Angka 1">
+                <input type="number" id="num2" placeholder="Angka 2">
+                <button onclick="calculateSum()">Hitung Jumlah</button>
+                <p id="result"></p>
+            </div>
+            <div class="box">
+                <h2>Sapa aku</h2>
+                <button onclick="displayGreeting()">Tampilkan Ucapan</button>
+                <p id="greeting"></p>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 Hak Cipta Filbert</p>
+        </footer>
+    </div>
 
     <script>
-     	function DisplayData() {
-    const name = document.getElementById("nama").value;
-    if (name === "") {
-        document.getElementById('Output').textContent = 'Silahkan Masukkan Nama Dengan Benar';
-        return;
-    }
-    document.getElementById('Output').textContent = `Nama Anda: ${name}`;
-}
-                 
-      function calculateSum() {
-    var num1 = parseFloat(document.getElementById('num1').value);
-    var num2 = parseFloat(document.getElementById('num2').value);
-    if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById('result').textContent = 'Silakan masukkan kedua angka dengan benar.';
-    } else {
-        var sum = num1 + num2;
-        document.getElementById('result').textContent = 'Jumlah: ' + sum;
-    }
-}
+        function DisplayData() {
+            const name = document.getElementById("nama").value;
+            if (name === "") {
+                document.getElementById('Output').textContent = 'Silahkan Masukkan Nama Dengan Benar';
+                return;
+            }
+            document.getElementById('Output').textContent = `Nama Anda: ${name}`;
+        }
 
-function displayGreeting() {
-    var now = new Date();
-    var hours = now.getHours();
-    var greeting;
+        function calculateSum() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').textContent = 'Silakan masukkan kedua angka dengan benar.';
+            } else {
+                var sum = num1 + num2;
+                document.getElementById('result').textContent = 'Jumlah: ' + sum;
+            }
+        }
 
-    if (hours < 12) {
-        greeting = 'Selamat Pagi!';
-    } else if (hours < 15) {
-        greeting = 'Selamat Siang!';
-    } else if (hours < 18) {
-        greeting = 'Selamat Sore!';
-    } else {
-        greeting = 'Selamat Malam!,${nama}';
-    }
+        function displayGreeting() {
+            var now = new Date();
+            var hours = now.getHours();
+            var greeting;
 
-    document.getElementById('greeting').textContent = greeting;
-}
+            if (hours < 12) {
+                greeting = 'Selamat Pagi!';
+            } else if (hours < 15) {
+                greeting = 'Selamat Siang!';
+            } else if (hours < 18) {
+                greeting = 'Selamat Sore!';
+            } else {
+                greeting = 'Selamat Malam!';
+            }
 
+            document.getElementById('greeting').textContent = greeting;
+        }
     </script>
 </body>
 </html>
